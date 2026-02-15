@@ -9,20 +9,20 @@
     background: #1a0a10;
 }
 
-/* Pixel art background */
-.game-bg {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1;
+/* Scene wrapper - bg and dog share coordinate space */
+.game-scene {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
 }
 
 .bg-image {
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
     image-rendering: pixelated;
     -ms-interpolation-mode: nearest-neighbor;
 }
@@ -113,12 +113,12 @@
     min-width: 28px;
 }
 
-/* Dog area */
+/* Dog area - positioned relative to scene */
 .dog-area {
     position: absolute;
-    bottom: 18%;
+    top: 70%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%);
     z-index: 10;
     display: flex;
     flex-direction: column;
@@ -168,8 +168,8 @@
 }
 
 .dog-sprite {
-    width: 160px;
-    height: 160px;
+    width: 200px;
+    height: 200px;
     image-rendering: pixelated;
     -ms-interpolation-mode: nearest-neighbor;
     pointer-events: none;

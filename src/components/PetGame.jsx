@@ -168,14 +168,59 @@ export default function PetGame({ onBack }) {
 
     return (
         <div ref={containerRef} className="game-container">
-            {/* Pixel art background */}
-            <div className="game-bg">
+            {/* Scene wrapper - contains bg + dog in same coordinate space */}
+            <div className="game-scene">
+                {/* Pixel art background */}
                 <img src="/assets/background.png" alt="Room" className="bg-image" />
+
+                {/* Dark overlay for contrast */}
+                <div className="game-overlay" />
+
+                {/* Floating interaction hearts */}
+                {heartsEmoji.map(h => (
+                    <FloatingHeart key={h.id} emoji={h.emoji} x={h.x} delay={h.delay} />
+                ))}
+
+                {/* Dog area - positioned relative to scene/bg */}
+                <div className="dog-area">
+                    {/* Speech bubble */}
+                    {message && (
+                        <div ref={speechRef} className="speech-bubble">
+                            <span>{message}</span>
+                            <div className="speech-tail" />
+                        </div>
+                    )}
+
+                    {/* Dog sprite */}
+                    <div
+                        ref={dogContainerRef}
+                        className={`dog-sprite-container ${state !== 'idle' ? 'active' : ''}`}
+                        onTouchStart={handleDogTap}
+                        onTouchMove={handleTouchMove}
+                        onClick={handleDogTap}
+                    >
+                        <img
+                            src={spriteUrl}
+                            alt="Puppy"
+                            className="dog-sprite"
+                            draggable={false}
+                        />
+
+                        {/* Interaction glow */}
+                        {state !== 'idle' && <div className="interaction-glow" />}
+                    </div>
+
+                    {/* Tap hint */}
+                    {showHint && (
+                        <div className="tap-hint">
+                            <span className="tap-hint-icon">👆</span>
+                            <span>Tap or pet me!</span>
+                        </div>
+                    )}
+                </div>
             </div>
 
-            {/* Dark overlay for contrast */}
-            <div className="game-overlay" />
-
+            {/* UI overlay - stays viewport-relative */}
             {/* Back button */}
             <button className="back-button" onClick={onBack}>
                 <span>← Back</span>
@@ -191,49 +236,6 @@ export default function PetGame({ onBack }) {
                     />
                 </div>
                 <span className="love-meter-value">{loveMeter}%</span>
-            </div>
-
-            {/* Floating interaction hearts */}
-            {heartsEmoji.map(h => (
-                <FloatingHeart key={h.id} emoji={h.emoji} x={h.x} delay={h.delay} />
-            ))}
-
-            {/* Dog area */}
-            <div className="dog-area">
-                {/* Speech bubble */}
-                {message && (
-                    <div ref={speechRef} className="speech-bubble">
-                        <span>{message}</span>
-                        <div className="speech-tail" />
-                    </div>
-                )}
-
-                {/* Dog sprite */}
-                <div
-                    ref={dogContainerRef}
-                    className={`dog-sprite-container ${state !== 'idle' ? 'active' : ''}`}
-                    onTouchStart={handleDogTap}
-                    onTouchMove={handleTouchMove}
-                    onClick={handleDogTap}
-                >
-                    <img
-                        src={spriteUrl}
-                        alt="Puppy"
-                        className="dog-sprite"
-                        draggable={false}
-                    />
-
-                    {/* Interaction glow */}
-                    {state !== 'idle' && <div className="interaction-glow" />}
-                </div>
-
-                {/* Tap hint */}
-                {showHint && (
-                    <div className="tap-hint">
-                        <span className="tap-hint-icon">👆</span>
-                        <span>Tap or pet me!</span>
-                    </div>
-                )}
             </div>
 
             {/* Status text */}
