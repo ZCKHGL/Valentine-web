@@ -26,21 +26,21 @@ export default function useDogSprite() {
         // Preload idle frames
         for (let i = 0; i < IDLE_FRAME_COUNT; i++) {
             const img = new Image()
-            img.src = `/assets/animations/idle/south/frame_${String(i).padStart(3, '0')}.png`
+            img.src = `./assets/animations/idle/south/frame_${String(i).padStart(3, '0')}.png`
             images.push(img)
         }
 
         // Preload bark frames
         for (let i = 0; i < BARK_FRAME_COUNT; i++) {
             const img = new Image()
-            img.src = `/assets/animations/bark/south/frame_${String(i).padStart(3, '0')}.png`
+            img.src = `./assets/animations/bark/south/frame_${String(i).padStart(3, '0')}.png`
             images.push(img)
         }
 
         // Preload rotations
         ROTATION_ORDER.forEach(dir => {
             const img = new Image()
-            img.src = `/assets/rotations/${dir}.png`
+            img.src = `./assets/rotations/${dir}.png`
             images.push(img)
         })
     }, [])
@@ -53,7 +53,7 @@ export default function useDogSprite() {
         const interval = setInterval(() => {
             frame = (frame + 1) % IDLE_FRAME_COUNT
             setCurrentFrame(frame)
-            setSpriteUrl(`/assets/animations/idle/south/frame_${String(frame).padStart(3, '0')}.png`)
+            setSpriteUrl(`./assets/animations/idle/south/frame_${String(frame).padStart(3, '0')}.png`)
         }, IDLE_FRAME_INTERVAL)
 
         return () => clearInterval(interval)
@@ -64,7 +64,7 @@ export default function useDogSprite() {
         if (state !== 'rotating') return
 
         let rotIdx = 0
-        setSpriteUrl(`/assets/rotations/${ROTATION_ORDER[0]}.png`)
+        setSpriteUrl(`./assets/rotations/${ROTATION_ORDER[0]}.png`)
 
         const interval = setInterval(() => {
             rotIdx++
@@ -75,7 +75,7 @@ export default function useDogSprite() {
                 return
             }
             setCurrentRotation(rotIdx)
-            setSpriteUrl(`/assets/rotations/${ROTATION_ORDER[rotIdx]}.png`)
+            setSpriteUrl(`./assets/rotations/${ROTATION_ORDER[rotIdx]}.png`)
         }, ROTATION_INTERVAL)
 
         return () => clearInterval(interval)
@@ -86,7 +86,7 @@ export default function useDogSprite() {
         if (state !== 'barking') return
 
         let frame = 0
-        setSpriteUrl(`/assets/animations/bark/south/frame_000.png`)
+        setSpriteUrl(`./assets/animations/bark/south/frame_000.png`)
 
         const interval = setInterval(() => {
             frame++
@@ -100,7 +100,7 @@ export default function useDogSprite() {
                 return
             }
             setCurrentFrame(frame)
-            setSpriteUrl(`/assets/animations/bark/south/frame_${String(frame).padStart(3, '0')}.png`)
+            setSpriteUrl(`./assets/animations/bark/south/frame_${String(frame).padStart(3, '0')}.png`)
         }, BARK_FRAME_INTERVAL)
 
         return () => clearInterval(interval)
