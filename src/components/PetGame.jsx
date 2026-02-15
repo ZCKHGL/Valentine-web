@@ -87,7 +87,7 @@ export default function PetGame({ onBack }) {
                 audioRef.current.pause()
                 audioRef.current.currentTime = 0
             }
-            const audio = new Audio('/assets/bark.mp3')
+            const audio = new Audio('./assets/bark.mp3')
             audioRef.current = audio
             audio.volume = 0.6
             audio.play().catch(() => { })
@@ -171,7 +171,7 @@ export default function PetGame({ onBack }) {
             {/* Scene wrapper - contains bg + dog in same coordinate space */}
             <div className="game-scene">
                 {/* Pixel art background */}
-                <img src="/assets/background.png" alt="Room" className="bg-image" />
+                <img src="./assets/background.png" alt="Room" className="bg-image" />
 
                 {/* Dark overlay for contrast */}
                 <div className="game-overlay" />

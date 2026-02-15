@@ -126,7 +126,7 @@ export default function MainMenu({ onPlay }) {
                 {/* Dog sprite */}
                 <div ref={dogRef} className="menu-dog">
                     <img
-                        src="/assets/rotations/south.png"
+                        src="./assets/rotations/south.png"
                         alt="Puppy"
                         className="menu-dog-sprite"
                     />

@@ -15,7 +15,7 @@ export default function useDogSprite() {
     const [state, setState] = useState('idle') // idle | rotating | barking
     const [currentFrame, setCurrentFrame] = useState(0)
     const [currentRotation, setCurrentRotation] = useState(0)
-    const [spriteUrl, setSpriteUrl] = useState('/assets/animations/idle/south/frame_000.png')
+    const [spriteUrl, setSpriteUrl] = useState('./assets/animations/idle/south/frame_000.png')
     const timerRef = useRef(null)
     const stateRef = useRef('idle')
 
