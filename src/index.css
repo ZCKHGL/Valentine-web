@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+:root {
+  --pink-100: #fce4ec;
+  --pink-200: #f8bbd0;
+  --pink-300: #f48fb1;
+  --pink-400: #f06292;
+  --pink-500: #ec407a;
+  --pink-600: #e91e63;
+  --rose-500: #f43f5e;
+  --rose-600: #e11d48;
+  --red-400: #ef5350;
+  --red-500: #ef4444;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body, #root {
+  width: 100%;
+  height: 100dvh;
+  overflow: hidden;
+  font-family: 'Fredoka', 'Outfit', sans-serif;
+  background: #1a0a10;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+img {
+  image-rendering: pixelated;
+  -ms-interpolation-mode: nearest-neighbor;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}

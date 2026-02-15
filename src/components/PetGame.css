@@ -1,0 +1,293 @@
+.game-container {
+    position: relative;
+    width: 100%;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    background: #1a0a10;
+}
+
+/* Pixel art background */
+.game-bg {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.bg-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    image-rendering: pixelated;
+    -ms-interpolation-mode: nearest-neighbor;
+}
+
+.game-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom,
+            rgba(26, 10, 30, 0.3) 0%,
+            rgba(26, 10, 30, 0.1) 30%,
+            rgba(26, 10, 30, 0.1) 60%,
+            rgba(26, 10, 30, 0.4) 100%);
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Back button */
+.back-button {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    z-index: 20;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(251, 113, 133, 0.3);
+    border-radius: 20px;
+    padding: 8px 16px;
+    color: #fce4ec;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    touch-action: manipulation;
+    transition: background 0.2s;
+}
+
+.back-button:active {
+    background: rgba(251, 113, 133, 0.3);
+}
+
+/* Love meter */
+.love-meter-container {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(251, 113, 133, 0.3);
+    border-radius: 20px;
+    padding: 8px 14px;
+}
+
+.love-meter-label {
+    font-size: 12px;
+    color: #f9a8d4;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.love-meter-track {
+    width: 60px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.love-meter-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #ec4899, #f43f5e);
+    border-radius: 4px;
+    transition: width 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 0 8px rgba(244, 63, 94, 0.5);
+}
+
+.love-meter-value {
+    font-size: 11px;
+    color: #f9a8d4;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    min-width: 28px;
+}
+
+/* Dog area */
+.dog-area {
+    position: absolute;
+    bottom: 18%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Speech bubble */
+.speech-bubble {
+    position: relative;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(4px);
+    border-radius: 16px;
+    padding: 12px 18px;
+    margin-bottom: 12px;
+    max-width: 220px;
+    text-align: center;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: #831843;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15),
+        0 0 20px rgba(251, 113, 133, 0.2);
+    transform-origin: bottom center;
+}
+
+.speech-tail {
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 16px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.95);
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+
+/* Dog sprite */
+.dog-sprite-container {
+    position: relative;
+    cursor: pointer;
+    touch-action: none;
+    transition: filter 0.2s;
+}
+
+.dog-sprite-container.active {
+    filter: drop-shadow(0 0 12px rgba(251, 113, 133, 0.6));
+}
+
+.dog-sprite {
+    width: 160px;
+    height: 160px;
+    image-rendering: pixelated;
+    -ms-interpolation-mode: nearest-neighbor;
+    pointer-events: none;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+.interaction-glow {
+    position: absolute;
+    inset: -15px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(251, 113, 133, 0.35), transparent 65%);
+    animation: pulse-interaction 0.5s ease-in-out infinite alternate;
+    pointer-events: none;
+}
+
+@keyframes pulse-interaction {
+    0% {
+        transform: scale(1);
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: scale(1.15);
+        opacity: 1;
+    }
+}
+
+/* Tap hint */
+.tap-hint {
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    border-radius: 20px;
+    padding: 8px 16px;
+    animation: hint-bounce 1.5s ease-in-out infinite;
+}
+
+.tap-hint-icon {
+    font-size: 18px;
+    animation: tap-icon 1s ease-in-out infinite;
+}
+
+@keyframes tap-icon {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-4px);
+    }
+}
+
+.tap-hint span:last-child {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 13px;
+    color: #f9a8d4;
+    font-weight: 500;
+}
+
+@keyframes hint-bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+        opacity: 0.8;
+    }
+
+    50% {
+        transform: translateY(-3px);
+        opacity: 1;
+    }
+}
+
+/* Floating interaction hearts */
+.interaction-heart {
+    position: absolute;
+    top: 50%;
+    font-size: 24px;
+    pointer-events: none;
+    z-index: 15;
+}
+
+/* Status bar */
+.status-bar {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20;
+}
+
+.status-text {
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(251, 113, 133, 0.2);
+    border-radius: 20px;
+    padding: 6px 16px;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: #f9a8d4;
+    white-space: nowrap;
+}
+
+.idle-text {
+    color: #c4b5d0;
+}
+
+.rotate-text {
+    color: #fbbf24;
+}
+
+.bark-text {
+    color: #fb7185;
+}

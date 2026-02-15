@@ -1,0 +1,212 @@
+.menu-container {
+    position: relative;
+    width: 100%;
+    height: 100dvh;
+    background: linear-gradient(135deg, #1a0a1e 0%, #2d1033 25%, #3d1341 50%, #4a1050 75%, #1a0a1e 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Floating hearts layer */
+.hearts-layer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.floating-heart {
+    position: absolute;
+    pointer-events: none;
+    z-index: 1;
+    filter: drop-shadow(0 0 6px rgba(244, 114, 182, 0.4));
+}
+
+/* Shimmer overlay */
+.shimmer-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 30%, rgba(251, 113, 133, 0.15), transparent 60%),
+        radial-gradient(ellipse at 30% 70%, rgba(244, 114, 182, 0.1), transparent 50%),
+        radial-gradient(ellipse at 70% 60%, rgba(236, 72, 153, 0.08), transparent 40%);
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Content */
+.menu-content {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Dog sprite on menu */
+.menu-dog {
+    position: relative;
+    margin-bottom: 8px;
+}
+
+.menu-dog-sprite {
+    width: 120px;
+    height: 120px;
+    image-rendering: pixelated;
+    filter: drop-shadow(0 4px 20px rgba(251, 113, 133, 0.5));
+}
+
+.dog-glow {
+    position: absolute;
+    inset: -20px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(251, 113, 133, 0.3), transparent 70%);
+    animation: pulse-glow 2s ease-in-out infinite;
+    z-index: -1;
+}
+
+@keyframes pulse-glow {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+
+    50% {
+        transform: scale(1.2);
+        opacity: 0.8;
+    }
+}
+
+/* Title */
+.menu-title {
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 1.2;
+    color: #fce4ec;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    text-shadow: 0 0 30px rgba(251, 113, 133, 0.5),
+        0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.title-name {
+    font-size: 42px;
+    font-weight: 900;
+    background: linear-gradient(135deg, #fb7185, #f472b6, #e879f9, #fb7185);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradient-shift 3s ease infinite;
+    filter: drop-shadow(0 2px 8px rgba(244, 114, 182, 0.4));
+}
+
+@keyframes gradient-shift {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+.title-woof {
+    font-size: 28px;
+    font-weight: 600;
+    color: #f9a8d4;
+}
+
+/* Subtitle */
+.menu-subtitle {
+    font-family: 'Outfit', sans-serif;
+    font-size: 16px;
+    color: #d4a0b9;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
+
+/* Play button */
+.play-button {
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 36px;
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient(135deg, #ec4899, #f43f5e, #e11d48);
+    color: white;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(244, 63, 94, 0.4),
+        0 0 40px rgba(236, 72, 153, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transition: box-shadow 0.3s ease;
+    touch-action: manipulation;
+    position: relative;
+    overflow: hidden;
+}
+
+.play-button::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent 50%);
+    border-radius: 50px;
+}
+
+.play-button:active {
+    transform: scale(0.95) !important;
+    box-shadow: 0 2px 10px rgba(244, 63, 94, 0.3);
+}
+
+.play-icon {
+    font-size: 24px;
+}
+
+/* Paw prints at bottom */
+.paw-prints {
+    position: absolute;
+    bottom: 30px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    z-index: 10;
+}
+
+.paw {
+    font-size: 20px;
+    opacity: 0.4;
+    animation: paw-bounce 1.5s ease-in-out infinite;
+}
+
+@keyframes paw-bounce {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.3;
+    }
+
+    50% {
+        transform: translateY(-5px) rotate(5deg);
+        opacity: 0.6;
+    }
+}
